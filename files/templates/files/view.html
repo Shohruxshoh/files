@@ -1,0 +1,58 @@
+{% extends 'files/base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12">
+
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th >S/N</th>
+                        <th >Name</th>
+                        <th >File Link</th>
+                        <th ></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% if not user.is_authenticated  %}
+                      <h2>Oldin tizimga kiring</h2>
+                      {% else %}
+                      {% for d in object_list %}
+                      <tr>
+                        {% if user == d.user %}
+                        <th>{{forloop.counter}}</th>
+                        <th><a href="{% url 'detail' d.pk %}">{{d.file_name}}</a></th>
+                        <th><a  href="{{d.files.url}}">{{d.files}}</a></th>
+                        <th><a  href="{{d.image_one.url}}"><img src={{d.image_one.url}} style="width: 20px; float: left; margin-right: 1px;"></a></th>
+                        {% if d.image_two %}
+                        <th><a  href="{{d.image_two.url}}"><img src={{d.image_two.url}} style="width: 20px; float: left; margin-right: 1px;"></a></th>
+                        {% endif %}
+                        {% if d.image_three %}
+                        <th><a  href="{{d.image_three.url}}"><img src={{d.image_three.url}} style="width: 20px; float: left; margin-right: 1px;"></a></th>
+                        {% endif %}
+                      </tr>
+                      {% endif %}
+                      {% endfor %}
+                      {% endif %}                     
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+{% endblock content %}

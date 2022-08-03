@@ -1,0 +1,12 @@
+{% extends 'files/base.html' %}
+
+{% block content %}
+<main class="container">
+  <div class="bg-light p-5 rounded">
+    <h1>Files</h1>
+    <p class="lead">Fayl va rasmlarni yuklash uchun bosing</p>
+    <a class="btn btn-lg btn-primary" href="{% url 'create' %}" role="button">Yaratish &raquo;</a>
+  </div>
+</main>
+
+{% endblock content %}

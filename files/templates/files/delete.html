@@ -1,0 +1,14 @@
+{% extends 'files/base.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+<h1>Fileni o`chirish</h1>
+<form action="" method="post">
+  {% csrf_token %}
+  <p>"{{post.title}}" fileni o`chiraymi</p>
+  <input type="submit" value="O`chirish">
+</form>
+{% else %}
+<h2>Oldin tizimga kiring</h2>
+{% endif %}
+
+{% endblock content %}
